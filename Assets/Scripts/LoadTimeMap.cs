@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using YamlDotNet.Serialization;
 //using YamlDotNet.Serialization;
 //using YamlDotNet.Samples.Helpers;
 
@@ -39,7 +40,7 @@ public class LoadTimeMap : MonoBehaviour
     [ContextMenu("TestYaml")]
     public void TestYaml()
     {
-        //var serializer = new SerializerBuilder().Build();
+        var serializer = new SerializerBuilder().Build();
         //var yaml = serializer.Serialize(receipt);
         //output.WriteLine(yaml);
     }
