@@ -1,0 +1,63 @@
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>BehaviorAIAction</Title>
+            <Shortcut>aiact</Shortcut>
+            <Description></Description>
+            <Author>kaleidos</Author>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>classname</ID>
+                    <Default>classname</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="csharp" Format="CData">
+                <![CDATA[using System.Collections;
+					using System.Collections.Generic;
+					using UnityEngine;
+					using BehaviorDesigner.Runtime.Tasks;
+					using BehaviorDesigner.Runtime;
+					[TaskCategory("Game/Tasks/Actions")]
+					public class $classname$ : Action
+					{
+						public string SkillName;
+						private SkillManager m_skillMgr;
+						public override TaskStatus OnUpdate()
+						{
+							if (m_skillMgr.IsCasting(SkillName) == true)
+							{
+								return TaskStatus.Running;
+							}
+							else
+							{
+								return TaskStatus.Success;
+							}
+						}
+						public override void OnAwake()
+						{
+							m_skillMgr = GetComponent<SkillManager>();
+							if (SkillName == null)
+							{
+								Debug.Assert(false, "AICastSkill SkillName is null");
+							}
+						}
+						public override void OnStart()
+						{
+							m_skillMgr.CastSkill(SkillName);
+						}
+
+						public override void OnEnd()
+						{
+							m_skillMgr.EndSkill(SkillName);
+						}
+					}
+                ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
