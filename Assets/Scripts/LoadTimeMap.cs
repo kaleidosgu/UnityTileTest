@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
+using YamlDotNet.RepresentationModel;
 //using YamlTest;
 //using YamlDotNet.Serialization;
 //using YamlDotNet.Samples.Helpers;
@@ -52,21 +53,24 @@ public class LoadTimeMap : MonoBehaviour
             int nEndIdx = str.IndexOf("---", nStartIdx);
             string strTileMapPaletteData = str.Substring(nStartIdx, nEndIdx - nStartIdx);
             string strFinal = "---\n" + strTileMapPaletteData;
-
-            strFinal = @"---
-TestTest:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2193453691686714506}
-  m_Enabled: 1";
+            //            strFinal = @"
+            //TestTest:
+            //  m_ObjectHideFlags: 15
+            //";
+            strFinal = @"
+  TestTest:
+    m_ObjectHideFlags: 0
+    dda: {fileID: file1, guid: file2, type: file3}
+";
 
             var input = new StringReader(strFinal);
 
             var deserializer = new DeserializerBuilder()
-                .WithNamingConvention(new CamelCaseNamingConvention())
+                .WithNamingConvention(new NullNamingConvention())
                 .Build();
+
+            //var stream = new YamlStream();
+            //stream.Load(input);
 
             var order = deserializer.Deserialize<TestOrder>(input);
 
@@ -77,6 +81,35 @@ TestTest:
         {
             Debug.Log(e.ToString());
         }
+    }
+    [ContextMenu("DeserializeData")]
+    private void DeserializeData()
+    {
+        TestOrder _order = new TestOrder();
+        _order.TestTest = new testSubClass();
+        _order.TestTest.m_ObjectHideFlags = 15;
+        _order.TestTest.dda = new TileSprite();
+        _order.TestTest.dda.fileID = "file";
+        _order.TestTest.dda.guid = "file";
+        _order.TestTest.dda.type = "file";
+        var serializer = new SerializerBuilder().Build();
+        var yaml = serializer.Serialize(_order);
+
+        int a = 0;
+    }
+    private void dd()
+    {
+    //    var stream = new YamlStream();
+    //    string input = GetFileContextByPath(strSpriteRelate);
+    //    stream.Load(new StringReader(input));
+
+    //    var deserializer = new DeserializerBuilder()
+    //.WithNamingConvention(new NullNamingConvention())
+    //.Build();
+
+    //    m_sprData = deserializer.Deserialize<SpriteDataClass>(input);
+    //    m_sprData.BuildDic();
+    //    int a = 0;
     }
     [ContextMenu("TestYaml")]
     public void TestYaml()
