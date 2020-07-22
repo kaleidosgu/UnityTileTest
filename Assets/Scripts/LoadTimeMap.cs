@@ -84,15 +84,19 @@ public class LoadTimeMap : MonoBehaviour
         m_TileColorIndex: 0
         m_TileObjectToInstantiateIndex: 65535
         m_AllTileFlags: 1073741825
+    m_AnimatedTiles: {}
     m_TileAssetArray:
     - m_RefCount: 1
-        m_Data: {fileID: 11400000, guid: 0e97bf42273b34c4a87eb122070f2b47, type: 2}
+      m_Data: {fileID: 11400000, guid: 0e97bf42273b34c4a87eb122070f2b47, type: 2}
     - m_RefCount: 1
-        m_Data: {fileID: 11400000, guid: bc73fe04d8612de4796b4e2e78d610f9, type: 2}
+      m_Data: {fileID: 11400000, guid: bc73fe04d8612de4796b4e2e78d610f9, type: 2}
+    m_TileSpriteArray:
     - m_RefCount: 1
-        m_Data: {fileID: 11400000, guid: 62883c52d178f70478b85c1cfad2ae8f, type: 2}
+      m_Data: {fileID: -8942568313111905122, guid: 05235d4e4f127634fa6805b2b927b801,
+      type: 3}
     - m_RefCount: 1
-        m_Data: {fileID: 11400000, guid: df70fd6c7fcd13444ba1fce0c3455111, type: 2}
+      m_Data: {fileID: -2131922044865327498, guid: 05235d4e4f127634fa6805b2b927b801,
+      type: 3}
 ";
 
             var input = new StringReader(strFinal);
