@@ -58,9 +58,13 @@ public class LoadTimeMap : MonoBehaviour
             //  m_ObjectHideFlags: 15
             //";
             strFinal = @"
-  TestTest:
+  Tilemap:
     m_ObjectHideFlags: 0
-    dda: {fileID: file1, guid: file2, type: file3}
+    m_CorrespondingSourceObject: {fileID: 0}
+    m_PrefabInstance: {fileID: 0}
+    m_PrefabAsset: {fileID: 0}
+    m_GameObject: {fileID: 2193453691686714506}
+    m_Enabled: 1
 ";
 
             var input = new StringReader(strFinal);
@@ -72,7 +76,7 @@ public class LoadTimeMap : MonoBehaviour
             //var stream = new YamlStream();
             //stream.Load(input);
 
-            var order = deserializer.Deserialize<TestOrder>(input);
+            var order = deserializer.Deserialize<PrefabTileSet>(input);
 
 
             Debug.Log(str);
@@ -85,15 +89,15 @@ public class LoadTimeMap : MonoBehaviour
     [ContextMenu("DeserializeData")]
     private void DeserializeData()
     {
-        TestOrder _order = new TestOrder();
-        _order.TestTest = new testSubClass();
-        _order.TestTest.m_ObjectHideFlags = 15;
-        _order.TestTest.dda = new TileSprite();
-        _order.TestTest.dda.fileID = "file";
-        _order.TestTest.dda.guid = "file";
-        _order.TestTest.dda.type = "file";
-        var serializer = new SerializerBuilder().Build();
-        var yaml = serializer.Serialize(_order);
+        //TestOrder _order = new TestOrder();
+        //_order.TestTest = new TilemapData();
+        //_order.TestTest.m_ObjectHideFlags = 15;
+        //_order.TestTest.dda = new FileIDData();
+        //_order.TestTest.dda.fileID = "file";
+        //_order.TestTest.dda.guid = "file";
+        //_order.TestTest.dda.type = "file";
+        //var serializer = new SerializerBuilder().Build();
+        //var yaml = serializer.Serialize(_order);
 
         int a = 0;
     }
