@@ -65,6 +65,25 @@ public class LoadTimeMap : MonoBehaviour
     m_PrefabAsset: {fileID: 0}
     m_GameObject: {fileID: 2193453691686714506}
     m_Enabled: 1
+    m_Tiles:
+    - first: {x: -1, y: -10, z: 0}
+      second:
+        serializedVersion: 2
+        m_TileIndex: 246
+        m_TileSpriteIndex: 246
+        m_TileMatrixIndex: 0
+        m_TileColorIndex: 0
+        m_TileObjectToInstantiateIndex: 65535
+        m_AllTileFlags: 1073741825
+    - first: {x: 0, y: -10, z: 0}
+      second:
+        serializedVersion: 2
+        m_TileIndex: 247
+        m_TileSpriteIndex: 247
+        m_TileMatrixIndex: 0
+        m_TileColorIndex: 0
+        m_TileObjectToInstantiateIndex: 65535
+        m_AllTileFlags: 1073741825
 ";
 
             var input = new StringReader(strFinal);
