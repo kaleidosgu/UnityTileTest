@@ -20,11 +20,14 @@ public class TilemapData
     public List<TileSetDetail> m_Tiles { get; set; }
 
     //因为没有现成的数据，所以m_AnimatedTiles暂时定义为int的List
-    public List<int> m_AnimatedTiles { get; set; }
+    public AnimatedTile m_AnimatedTiles { get; set; }
     public List<TileAsset> m_TileAssetArray { get; set; }
     public List<TileAsset> m_TileSpriteArray { get; set; }
 }
+public class AnimatedTile
+{
 
+}
 public class PrefabTileSet
 {
     public TilemapData Tilemap { get; set; }

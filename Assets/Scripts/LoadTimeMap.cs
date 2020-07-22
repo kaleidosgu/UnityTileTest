@@ -53,51 +53,52 @@ public class LoadTimeMap : MonoBehaviour
             int nEndIdx = str.IndexOf("---", nStartIdx);
             string strTileMapPaletteData = str.Substring(nStartIdx, nEndIdx - nStartIdx);
             string strFinal = "---\n" + strTileMapPaletteData;
+            strFinal = strTileMapPaletteData;
             //            strFinal = @"
             //TestTest:
             //  m_ObjectHideFlags: 15
             //";
-            strFinal = @"
-  Tilemap:
-    m_ObjectHideFlags: 0
-    m_CorrespondingSourceObject: {fileID: 0}
-    m_PrefabInstance: {fileID: 0}
-    m_PrefabAsset: {fileID: 0}
-    m_GameObject: {fileID: 2193453691686714506}
-    m_Enabled: 1
-    m_Tiles:
-    - first: {x: -1, y: -10, z: 0}
-      second:
-        serializedVersion: 2
-        m_TileIndex: 246
-        m_TileSpriteIndex: 246
-        m_TileMatrixIndex: 0
-        m_TileColorIndex: 0
-        m_TileObjectToInstantiateIndex: 65535
-        m_AllTileFlags: 1073741825
-    - first: {x: 0, y: -10, z: 0}
-      second:
-        serializedVersion: 2
-        m_TileIndex: 247
-        m_TileSpriteIndex: 247
-        m_TileMatrixIndex: 0
-        m_TileColorIndex: 0
-        m_TileObjectToInstantiateIndex: 65535
-        m_AllTileFlags: 1073741825
-    m_AnimatedTiles: {}
-    m_TileAssetArray:
-    - m_RefCount: 1
-      m_Data: {fileID: 11400000, guid: 0e97bf42273b34c4a87eb122070f2b47, type: 2}
-    - m_RefCount: 1
-      m_Data: {fileID: 11400000, guid: bc73fe04d8612de4796b4e2e78d610f9, type: 2}
-    m_TileSpriteArray:
-    - m_RefCount: 1
-      m_Data: {fileID: -8942568313111905122, guid: 05235d4e4f127634fa6805b2b927b801,
-      type: 3}
-    - m_RefCount: 1
-      m_Data: {fileID: -2131922044865327498, guid: 05235d4e4f127634fa6805b2b927b801,
-      type: 3}
-";
+            //            strFinal = @"
+            //  Tilemap:
+            //    m_ObjectHideFlags: 0
+            //    m_CorrespondingSourceObject: {fileID: 0}
+            //    m_PrefabInstance: {fileID: 0}
+            //    m_PrefabAsset: {fileID: 0}
+            //    m_GameObject: {fileID: 2193453691686714506}
+            //    m_Enabled: 1
+            //    m_Tiles:
+            //    - first: {x: -1, y: -10, z: 0}
+            //      second:
+            //        serializedVersion: 2
+            //        m_TileIndex: 246
+            //        m_TileSpriteIndex: 246
+            //        m_TileMatrixIndex: 0
+            //        m_TileColorIndex: 0
+            //        m_TileObjectToInstantiateIndex: 65535
+            //        m_AllTileFlags: 1073741825
+            //    - first: {x: 0, y: -10, z: 0}
+            //      second:
+            //        serializedVersion: 2
+            //        m_TileIndex: 247
+            //        m_TileSpriteIndex: 247
+            //        m_TileMatrixIndex: 0
+            //        m_TileColorIndex: 0
+            //        m_TileObjectToInstantiateIndex: 65535
+            //        m_AllTileFlags: 1073741825
+            //    m_AnimatedTiles: {}
+            //    m_TileAssetArray:
+            //    - m_RefCount: 1
+            //      m_Data: {fileID: 11400000, guid: 0e97bf42273b34c4a87eb122070f2b47, type: 2}
+            //    - m_RefCount: 1
+            //      m_Data: {fileID: 11400000, guid: bc73fe04d8612de4796b4e2e78d610f9, type: 2}
+            //    m_TileSpriteArray:
+            //    - m_RefCount: 1
+            //      m_Data: {fileID: -8942568313111905122, guid: 05235d4e4f127634fa6805b2b927b801,
+            //      type: 3}
+            //    - m_RefCount: 1
+            //      m_Data: {fileID: -2131922044865327498, guid: 05235d4e4f127634fa6805b2b927b801,
+            //      type: 3}
+            //";
 
             var input = new StringReader(strFinal);
 
