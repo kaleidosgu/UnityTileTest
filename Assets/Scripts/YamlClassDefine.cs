@@ -17,18 +17,17 @@ public class TilemapData
     public FileIDData m_PrefabAsset { get; set; }
     public FileIDData m_GameObject { get; set; }
     public int m_Enabled { get; set; }
-    //public TileSetData m_Tiles { get; set; }
     public List<TileSetDetail> m_Tiles { get; set; }
+
+    //因为没有现成的数据，所以m_AnimatedTiles暂时定义为int的List
+    public List<int> m_AnimatedTiles { get; set; }
+    public List<TileAsset> m_TileAssetArray { get; set; }
 }
 //}
 
 public class PrefabTileSet
 {
     public TilemapData Tilemap { get; set; }
-}
-public class TileSetData
-{
-    public List <TileSetDetail> array { get; set; }
 }
 public class TileSetDetail
 {
@@ -50,4 +49,16 @@ public class TileSetSecondData
     public int m_TileColorIndex { get; set; }
     public int m_TileObjectToInstantiateIndex { get; set; }
     public Int64 m_AllTileFlags { get; set; }
+}
+
+public class TileAssetData
+{
+    public string fileID { get; set; }
+    public string guid { get; set; }
+    public string type { get; set; }
+}
+public class TileAsset
+{
+    public int m_RefCount { get; set; }
+    public TileAssetData m_Data { get; set; }
 }
