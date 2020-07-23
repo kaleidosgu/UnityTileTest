@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aad838edc8d83864a859e016bedfbea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileMapPath: Assets/Resources/TileSets/bushPalette.prefab
+  TileMapPath: Assets/Resources/TileSets/smallpalette/bushPalette.prefab
 --- !u!4 &1130070185
 Transform:
   m_ObjectHideFlags: 0
