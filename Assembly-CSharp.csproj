@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\StringUtil.cs" />
     <Compile Include="Assets\Scripts\Util\UtilFile.cs" />
     <Compile Include="Assets\Scripts\YamlClassDefine.cs" />
+    <None Include="Assets\Resources\DataRes\TileAssetData.txt" />
+    <None Include="Assets\Resources\DataRes\SmallTileMapData.txt" />
     <None Include="Assets\Resources\DataRes\test.txt" />
     <None Include="Assets\Resources\YamlData.txt" />
     <None Include="Assets\Resources\sampledata.txt" />

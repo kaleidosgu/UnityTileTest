@@ -18,3 +18,46 @@
 - first: {x: 2, y: -2, z: 0}
 - first: {x: 3, y: -2, z: 0}
 - first: {x: 4, y: -2, z: 0}
+
+- first: {x: -1, y: -3, z: 0}
+- first: {x: 0, y: -3, z: 0}
+- first: {x: 1, y: -3, z: 0}
+- first: {x: 2, y: -3, z: 0}
+- first: {x: 3, y: -3, z: 0}
+- first: {x: 4, y: -3, z: 0}
+
+- first: {x: -1, y: -4, z: 0}
+- first: {x: 0, y: -4, z: 0}
+- first: {x: 1, y: -4, z: 0}
+- first: {x: 2, y: -4, z: 0}
+- first: {x: 3, y: -4, z: 0}
+- first: {x: 4, y: -4, z: 0}
+
+- first: {x: -1, y: -5, z: 0}
+- first: {x: 0, y: -5, z: 0}
+- first: {x: 1, y: -5, z: 0}
+- first: {x: 2, y: -5, z: 0}
+- first: {x: 3, y: -5, z: 0}
+- first: {x: 4, y: -5, z: 0}
+
+guid
+Globally Unique Identifier
+
+砖块prefab
+
+m_TileIndex索引
+查找下面的m_TileAssetArray
+砖块通过m_TileIndex进行索引tileAsset
+X从-1开始，Y是从最下面的砖块开始，但是值为负值到最上面的0
+array里面guid的就是asset资源的数据标记
+Asset数据为实际砖块调色板中的一个个格子的数据。
+
+m_TileSpriteIndex索引
+查找下面的 m_TileSpriteArray
+fileID 的数据是sprite资源png.meta中的数据，里面带着sprite拆分后的名字“SmallPalette_0”
+Sprite数据为实际图片拆分后的一个个文件数据
+
+
+场景中的tilemap数据
+数据获取方法基本一致，但是场景中的数据索引，只是场景文件中的assetArray和spriteArray的数据。与Prefab中的数据是顺序和数量是不一致的。但是会有关联的数据在。
+可以先通过索引得到array中的数据guid或者fileid，然后通过这个id到砖块prefab里面去寻找具体的sprite图片信息或者索引
