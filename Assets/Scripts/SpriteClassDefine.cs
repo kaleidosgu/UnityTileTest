@@ -7,6 +7,24 @@ public class Sprite_MultiRes
     public int fileFormatVersion { get; set; }
     public string guid { get; set; }
     public Sprite_TextureImporter TextureImporter { get; set; }
+
+    public int FindIndexOfSpriteName(string strID)
+    {
+        int nIdx = 0;
+        foreach(Sprite_IDToNameTable _element in TextureImporter.internalIDToNameTable)
+        {
+            nIdx++;
+            if (_element.second.Equals(strID) == true)
+            {
+                break;
+            }
+        }
+        if(nIdx != TextureImporter.internalIDToNameTable.Count - 1)
+        {
+            return nIdx;
+        }
+        return -1;
+    }
 }
 public class Sprite_TextureImporter
 {
@@ -20,5 +38,5 @@ public class Sprite_IDToNameTable
 public class Sprite_IDToNameTable_First
 {
     //213
-    public string V223 { get; set; }
+    public string V213 { get; set; }
 }

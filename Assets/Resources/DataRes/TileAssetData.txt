@@ -63,3 +63,6 @@ Sprite数据为实际图片拆分后的一个个文件数据
 可以先通过索引得到array中的数据guid或者fileid，然后通过这个id到砖块prefab里面去寻找具体的sprite图片信息或者索引
 
 -为数组 {}为类成员
+
+另外一个思路sprite里面有textureRect可以算出里面sprite的不同格子。就是图片裁剪出的图素位置算出相对格子索引
+有局限性，因为sprite的整个图片可能不会全部放到tilePalette里面去，所以可能是不一致的。

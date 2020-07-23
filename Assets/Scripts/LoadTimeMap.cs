@@ -34,6 +34,7 @@ public class LoadTimeMap : MonoBehaviour
 {
     public string TileMapPath;
     public string SpriteDataPath;
+    public Sprite_MultiRes SpriteBuildData;
     // Start is called before the first frame update
     void Start()
     {
@@ -123,12 +124,12 @@ public class LoadTimeMap : MonoBehaviour
         try
         {
             string str = UtilFile.ReadStringFromFile(SpriteDataPath);
-            string strReplace = str.Replace("213", "V223");
+            string strReplace = str.Replace("213", "V213");
 
-            int nIdx = strReplace.IndexOf("externalObjects");
-            if(nIdx > 0)
+            int nIdxExternal = strReplace.IndexOf("externalObjects");
+            if(nIdxExternal > 0)
             {
-                strReplace = strReplace.Substring(0, nIdx);
+                strReplace = strReplace.Substring(0, nIdxExternal);
             }
             var input = new StringReader(strReplace);
 
@@ -136,9 +137,8 @@ public class LoadTimeMap : MonoBehaviour
                 .WithNamingConvention(new NullNamingConvention())
                 .Build();
 
-            var spriteData = deserializer.Deserialize<Sprite_MultiRes>(input);
+            SpriteBuildData = deserializer.Deserialize<Sprite_MultiRes>(input);
 
-            Debug.Log(str);
         }
         catch (SerializationException e)
         {

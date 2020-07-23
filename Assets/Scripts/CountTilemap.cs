@@ -25,6 +25,7 @@ public class CountTilemap : MonoBehaviour
     private int m_nMaxHeight;
     public static Dictionary<string, int> m_dicSpriteIndex = new Dictionary<string, int>();
     public static bool s_InitSprite;
+    Sprite_MultiRes _multiSpriteRes = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +60,12 @@ public class CountTilemap : MonoBehaviour
     [ContextMenu("GenerateXmlFile")]
     void GenerateXmlFile()
     {
+        LoadTimeMap _loadTile = GetComponent<LoadTimeMap>();
+        if(_loadTile != null)
+        {
+            _loadTile.LoadSpriteData();
+            _multiSpriteRes = _loadTile.SpriteBuildData;
+        }
         _replaceInit();
 
         int nFileIdx = 0;
@@ -201,7 +208,9 @@ public class CountTilemap : MonoBehaviour
                 Sprite sp = _tile.GetSprite(vecPos);
                 if (sp != null)
                 {
-                    int nIdxSprite = _getIndex(sp) + 1;
+                    //另外一个思路
+                    //int nIdxSprite = _getIndex(sp) + 1;
+                    int nIdxSprite = _getIndexBySpriteID(sp.name);
                     string str = string.Format("{0}", nIdxSprite);
                     strBuf.Append(str);
                     Debug.Log(sp.name);
@@ -289,6 +298,15 @@ public class CountTilemap : MonoBehaviour
             strTsxFile = "MeowTileSet";
         }
         makeXml(bounds.size.x, bounds.size.y, strBuf.ToString(), strGenerateFileName, TsxFileName);
+    }
+    private int _getIndexBySpriteID(string spID)
+    {
+        int nRes = -1;
+        if(_multiSpriteRes != null)
+        {
+            return _multiSpriteRes.FindIndexOfSpriteName(spID);
+        }
+        return nRes;
     }
     private int _getIndex(Sprite sp)
     {
