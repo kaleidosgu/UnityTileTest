@@ -61,3 +61,5 @@ Sprite数据为实际图片拆分后的一个个文件数据
 场景中的tilemap数据
 数据获取方法基本一致，但是场景中的数据索引，只是场景文件中的assetArray和spriteArray的数据。与Prefab中的数据是顺序和数量是不一致的。但是会有关联的数据在。
 可以先通过索引得到array中的数据guid或者fileid，然后通过这个id到砖块prefab里面去寻找具体的sprite图片信息或者索引
+
+-为数组 {}为类成员

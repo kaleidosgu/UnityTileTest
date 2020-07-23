@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using System;
 using UnityEngine.Tilemaps;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.RepresentationModel;
+using System.Runtime.Serialization;
 //using YamlTest;
 //using YamlDotNet.Serialization;
 //using YamlDotNet.Samples.Helpers;
@@ -31,6 +33,7 @@ public class TestClass
 public class LoadTimeMap : MonoBehaviour
 {
     public string TileMapPath;
+    public string SpriteDataPath;
     // Start is called before the first frame update
     void Start()
     {
@@ -108,6 +111,42 @@ public class LoadTimeMap : MonoBehaviour
             var tileSetDataIns = deserializer.Deserialize<PrefabTileSet>(input);
 
             Debug.Log(str);
+        }
+        catch (FileNotFoundException e)
+        {
+            Debug.Log(e.ToString());
+        }
+    }
+    [ContextMenu("LoadSpriteData")]
+    public void LoadSpriteData()
+    {
+        try
+        {
+            string str = UtilFile.ReadStringFromFile(SpriteDataPath);
+            string strReplace = str.Replace("213", "V223");
+
+            int nIdx = strReplace.IndexOf("externalObjects");
+            if(nIdx > 0)
+            {
+                strReplace = strReplace.Substring(0, nIdx);
+            }
+            var input = new StringReader(strReplace);
+
+            var deserializer = new DeserializerBuilder()
+                .WithNamingConvention(new NullNamingConvention())
+                .Build();
+
+            var spriteData = deserializer.Deserialize<Sprite_MultiRes>(input);
+
+            Debug.Log(str);
+        }
+        catch (SerializationException e)
+        {
+            int nres = e.ToString().IndexOf("externalObjects");
+            if (nres >= 0)
+            {
+                int a = 0;
+            }
         }
         catch (FileNotFoundException e)
         {

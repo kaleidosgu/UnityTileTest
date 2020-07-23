@@ -67,10 +67,12 @@
     <Compile Include="Assets\Scripts\FileUtil.cs" />
     <Compile Include="Assets\Scripts\LoadTimeMap.cs" />
     <Compile Include="Assets\Scripts\LoadUnityYaml.cs" />
+    <Compile Include="Assets\Scripts\SpriteClassDefine.cs" />
     <Compile Include="Assets\Scripts\StringUtil.cs" />
     <Compile Include="Assets\Scripts\Util\UtilFile.cs" />
     <Compile Include="Assets\Scripts\YamlClassDefine.cs" />
     <None Include="Assets\Resources\DataRes\TileAssetData.txt" />
+    <None Include="Assets\Resources\DataRes\sceneData.txt" />
     <None Include="Assets\Resources\DataRes\SmallTileMapData.txt" />
     <None Include="Assets\Resources\DataRes\test.txt" />
     <None Include="Assets\Resources\YamlData.txt" />
