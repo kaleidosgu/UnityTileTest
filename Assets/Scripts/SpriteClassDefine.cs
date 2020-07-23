@@ -19,7 +19,7 @@ public class Sprite_MultiRes
                 break;
             }
         }
-        if(nIdx != TextureImporter.internalIDToNameTable.Count - 1)
+        if(nIdx != TextureImporter.internalIDToNameTable.Count)
         {
             return nIdx;
         }
