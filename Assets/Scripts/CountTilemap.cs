@@ -338,13 +338,6 @@ public class CountTilemap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space) == true)
-        {
-            //if(AssignedTitleMap != null)
-            //{
-            //    _generateTileContent(AssignedTitleMap, GenerateFileName);
-            //}
-        }
         if (Input.GetKeyUp(KeyCode.H) == true)
         {
             Tilemap[] _array = FindObjectsOfType<Tilemap>();
