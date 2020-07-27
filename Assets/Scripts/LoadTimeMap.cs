@@ -8,6 +8,7 @@ using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.RepresentationModel;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 //using YamlTest;
 //using YamlDotNet.Serialization;
 //using YamlDotNet.Samples.Helpers;
@@ -153,9 +154,9 @@ public class LoadTimeMap : MonoBehaviour
             Debug.Log(e.ToString());
         }
     }
-    [ContextMenu("DeserializeData")]
-    private void DeserializeData()
+    private void JsonSerialize()
     {
+
         //TestOrder _order = new TestOrder();
         //_order.TestTest = new TilemapData();
         //_order.TestTest.m_ObjectHideFlags = 15;
@@ -165,7 +166,51 @@ public class LoadTimeMap : MonoBehaviour
         //_order.TestTest.dda.type = "file";
         //var serializer = new SerializerBuilder().Build();
         //var yaml = serializer.Serialize(_order);
+    }
+    [ContextMenu("XmlSerializeData")]
+    private void XmlSerializeData()
+    {
+        map mapData = new map();
+        mapTileset tileset = new mapTileset();
+        tileset.firstgid = 1;
+        tileset.source = "baba.tsx";
+        mapData.tileset = tileset;
 
+        mapLayer mapLayerIns = new mapLayer();
+        mapLayerIns.id = 1;
+        mapLayerIns.name = "Tile Layer 1";
+        mapLayerIns.width = 5;
+        mapLayerIns.height = 6;
+        mapLayerData dataField = new mapLayerData();
+        dataField.encoding = "csv";
+        dataField.Value = @"1, 2, 3, 4, 5, 
+7, 8, 9, 10, 11, 
+13, 14, 15, 16, 17, 
+19, 20, 21, 22, 23, 
+25, 26, 27, 28, 29, 
+31, 32, 33, 34, 35";
+        mapLayerIns.data = dataField;
+        mapData.layer = mapLayerIns;
+
+        //< map version = "1.2" tiledversion = "1.3.1" orientation = "orthogonal" renderorder = "right-down" compressionlevel = "-1" width = "5" height = "6" tilewidth = "16" tileheight = "16" infinite = "0" nextlayerid = "2" nextobjectid = "1" >
+        mapData.version = 1.2m;
+        mapData.tiledversion = "1.3.1";
+        mapData.orientation = "orthogonal";
+        mapData.renderorder = "right-down";
+        mapData.compressionlevel = -1;
+        mapData.width = 5;
+        mapData.height = 6;
+        mapData.tilewidth = 16;
+        mapData.tileheight = 16;
+        mapData.infinite = 0;
+        mapData.nextlayerid = 2;
+        mapData.nextobjectid = 1;
+
+
+        XmlSerializer serializer = new XmlSerializer(mapData.GetType());
+        StreamWriter writer = new StreamWriter("test.tmx");
+        serializer.Serialize(writer.BaseStream, mapData);
+        writer.Close();
         int a = 0;
     }
     [ContextMenu("TestYaml")]
