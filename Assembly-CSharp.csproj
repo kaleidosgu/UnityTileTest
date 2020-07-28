@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\SpriteClassDefine.cs" />
     <Compile Include="Assets\Scripts\StringUtil.cs" />
     <Compile Include="Assets\Scripts\TileEditorTmx.cs" />
+    <Compile Include="Assets\Scripts\TileEditorTsx.cs" />
     <Compile Include="Assets\Scripts\Util\UtilFile.cs" />
     <Compile Include="Assets\Scripts\YamlClassDefine.cs" />
     <None Include="Assets\Resources\DataRes\spriteData.txt" />

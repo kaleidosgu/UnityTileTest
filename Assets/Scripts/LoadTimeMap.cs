@@ -154,19 +154,6 @@ public class LoadTimeMap : MonoBehaviour
             Debug.Log(e.ToString());
         }
     }
-    private void JsonSerialize()
-    {
-
-        //TestOrder _order = new TestOrder();
-        //_order.TestTest = new TilemapData();
-        //_order.TestTest.m_ObjectHideFlags = 15;
-        //_order.TestTest.dda = new FileIDData();
-        //_order.TestTest.dda.fileID = "file";
-        //_order.TestTest.dda.guid = "file";
-        //_order.TestTest.dda.type = "file";
-        //var serializer = new SerializerBuilder().Build();
-        //var yaml = serializer.Serialize(_order);
-    }
     [ContextMenu("XmlSerializeData")]
     private void XmlSerializeData()
     {
@@ -213,6 +200,30 @@ public class LoadTimeMap : MonoBehaviour
         writer.Close();
         int a = 0;
     }
+    [ContextMenu("TsxSerializeData")]
+    public void TsxSerializeData()
+    {
+        tileset _tileSet = new tileset();
+
+        _tileSet.version = 1.2m;
+        _tileSet.tiledversion = "1.3.1";
+        _tileSet.name = "baba";
+        _tileSet.tilewidth = 16;
+        _tileSet.tileheight = 16;
+        _tileSet.tilecount = 36;
+        _tileSet.columns = 6;
+        tilesetImage _img = new tilesetImage();
+        _img.height = 96;
+        _img.width = 96;
+        _img.source = "Assets/Resources/Sprites/SmallPalette.png";
+        _tileSet.image = _img;
+
+
+        XmlSerializer serializer = new XmlSerializer(_tileSet.GetType());
+        StreamWriter writer = new StreamWriter("test.tsx");
+        serializer.Serialize(writer.BaseStream, _tileSet);
+        writer.Close();
+    }
     [ContextMenu("TestYaml")]
     public void TestYaml()
     {
@@ -237,5 +248,18 @@ public class LoadTimeMap : MonoBehaviour
         var yaml = serializer.Serialize(_testIns);
         int a = 0;
         //output.WriteLine(yaml);
+    }
+    private void JsonSerialize()
+    {
+
+        //TestOrder _order = new TestOrder();
+        //_order.TestTest = new TilemapData();
+        //_order.TestTest.m_ObjectHideFlags = 15;
+        //_order.TestTest.dda = new FileIDData();
+        //_order.TestTest.dda.fileID = "file";
+        //_order.TestTest.dda.guid = "file";
+        //_order.TestTest.dda.type = "file";
+        //var serializer = new SerializerBuilder().Build();
+        //var yaml = serializer.Serialize(_order);
     }
 }
