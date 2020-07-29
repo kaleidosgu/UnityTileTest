@@ -246,8 +246,11 @@ public class LoadTimeMap : MonoBehaviour
         _testIns.ooo.Add(test);
         //_testIns.test = new Vector2(1, 2);
         var yaml = serializer.Serialize(_testIns);
-        int a = 0;
         //output.WriteLine(yaml);
+
+        string[] arrayLines = { };
+        UtilFile.ReadFileLines(SpriteDataPath, out arrayLines);
+        int a = 0;
     }
     private void JsonSerialize()
     {

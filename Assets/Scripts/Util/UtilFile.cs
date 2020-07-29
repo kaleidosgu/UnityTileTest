@@ -12,4 +12,9 @@ public class UtilFile
         reader.Close();
         return strRet;
     }
+
+    public static void ReadFileLines(string textFile, out string[] lines)
+    {
+        lines = File.ReadAllLines(textFile);
+    }
 }
