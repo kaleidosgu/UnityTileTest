@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\LoadTimeMap.cs" />
     <Compile Include="Assets\Scripts\LoadUnityYaml.cs" />
     <Compile Include="Assets\Scripts\SpriteClassDefine.cs" />
+    <Compile Include="Assets\Scripts\SpriteYamlClass.cs" />
     <Compile Include="Assets\Scripts\StringUtil.cs" />
     <Compile Include="Assets\Scripts\TileEditorTmx.cs" />
     <Compile Include="Assets\Scripts\TileEditorTsx.cs" />

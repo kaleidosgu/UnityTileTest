@@ -70,6 +70,9 @@ Sprite数据为实际图片拆分后的一个个文件数据
 可能可以通过这个数据获得tileSet的尺寸
 m_Size: {x: 6, y: 6, z: 1}
 
+通过yaml转到json，然后在vs里面把Json转换成c# Class
+https://onlineyamltools.com/convert-yaml-to-json
+
 
 
 

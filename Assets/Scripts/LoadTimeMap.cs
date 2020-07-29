@@ -46,6 +46,20 @@ public class LoadTimeMap : MonoBehaviour
     {
         
     }
+    [ContextMenu("DeserializeSpriteYaml")]
+    public void DeserializeSpriteYaml()
+    {
+        string strFinal = UtilFile.ReadStringFromFile(SpriteDataPath);
+        strFinal = strFinal.Replace("213", "V213");
+        var input = new StringReader(strFinal);
+
+        var deserializer = new DeserializerBuilder()
+            .WithNamingConvention(new NullNamingConvention())
+            .Build();
+
+        var rootObj = deserializer.Deserialize<CustomYamlClass.Rootobject>(input);
+        int a = 0;
+    }
 
     [ContextMenu("LoadFileTest")]
     public void LoadFile()
@@ -250,6 +264,11 @@ public class LoadTimeMap : MonoBehaviour
 
         string[] arrayLines = { };
         UtilFile.ReadFileLines(SpriteDataPath, out arrayLines);
+
+        foreach(string str in arrayLines)
+        {
+
+        }
         int a = 0;
     }
     private void JsonSerialize()
