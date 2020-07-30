@@ -36,6 +36,7 @@ public class LoadTimeMap : MonoBehaviour
     public string TileMapPath;
     public string SpriteDataPath;
     public Sprite_MultiRes SpriteBuildData;
+    private CustomYamlClass.Rootobject m_rootDataTsx;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,7 +58,7 @@ public class LoadTimeMap : MonoBehaviour
             .WithNamingConvention(new NullNamingConvention())
             .Build();
 
-        var rootObj = deserializer.Deserialize<CustomYamlClass.Rootobject>(input);
+        m_rootDataTsx = deserializer.Deserialize<CustomYamlClass.Rootobject>(input);
         int a = 0;
     }
 
@@ -217,7 +218,11 @@ public class LoadTimeMap : MonoBehaviour
     [ContextMenu("TsxSerializeData")]
     public void TsxSerializeData()
     {
+        DeserializeSpriteYaml();
         tileset _tileSet = new tileset();
+
+        //foreach(cu)
+        //m_rootDataTsx.TextureImporter.spriteSheet.sprites
 
         _tileSet.version = 1.2m;
         _tileSet.tiledversion = "1.3.1";
@@ -232,7 +237,14 @@ public class LoadTimeMap : MonoBehaviour
         _img.source = "Assets/Resources/Sprites/SmallPalette.png";
         _tileSet.image = _img;
 
-
+        _serializeTsx(_tileSet,"test.tsx");
+        //XmlSerializer serializer = new XmlSerializer(_tileSet.GetType());
+        //StreamWriter writer = new StreamWriter("test.tsx");
+        //serializer.Serialize(writer.BaseStream, _tileSet);
+        //writer.Close();
+    }
+    private void _serializeTsx(tileset _tileSet,string strFileName)
+    {
         XmlSerializer serializer = new XmlSerializer(_tileSet.GetType());
         StreamWriter writer = new StreamWriter("test.tsx");
         serializer.Serialize(writer.BaseStream, _tileSet);

@@ -76,7 +76,6 @@
     <Compile Include="Assets\Scripts\YamlClassDefine.cs" />
     <None Include="Assets\Resources\DataRes\spriteData.txt" />
     <None Include="Assets\Resources\DataRes\TileAssetData.txt" />
-    <None Include="Assets\Resources\DataRes\sceneData.txt" />
     <None Include="Assets\Resources\DataRes\SmallTileMapData.txt" />
     <None Include="Assets\Resources\DataRes\test.txt" />
     <None Include="Assets\Resources\YamlData.txt" />
