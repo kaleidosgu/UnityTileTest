@@ -221,27 +221,44 @@ public class LoadTimeMap : MonoBehaviour
         DeserializeSpriteYaml();
         tileset _tileSet = new tileset();
 
+        int nMaxRow = 0;
+        int nMaxColumn = 0;
+        foreach(CustomYamlClass.Sprite _spr in m_rootDataTsx.TextureImporter.spriteSheet.sprites)
+        {
+            _tileSet.tilewidth = (byte)_spr.rect.width;
+            _tileSet.tileheight = (byte)_spr.rect.height;
+            int nCol = _spr.rect.x / _tileSet.tilewidth;
+            if( nMaxColumn < nCol )
+            {
+                nMaxColumn = nCol;
+            }
+            int nRow = _spr.rect.y / _tileSet.tileheight;
+            if (nMaxRow < nRow)
+            {
+                nMaxRow = nRow;
+            }
+        }
+        nMaxColumn++;
+        nMaxRow++;
+        _tileSet.columns = (byte)nMaxColumn;
+        _tileSet.tilecount = (byte)(nMaxColumn * nMaxRow);
         //foreach(cu)
         //m_rootDataTsx.TextureImporter.spriteSheet.sprites
 
         _tileSet.version = 1.2m;
         _tileSet.tiledversion = "1.3.1";
         _tileSet.name = "baba";
-        _tileSet.tilewidth = 16;
-        _tileSet.tileheight = 16;
-        _tileSet.tilecount = 36;
-        _tileSet.columns = 6;
         tilesetImage _img = new tilesetImage();
-        _img.height = 96;
-        _img.width = 96;
+        _img.height = (byte)(nMaxColumn * _tileSet.tileheight);
+        _img.width = (byte)(nMaxRow * _tileSet.tilewidth);
         _img.source = "Assets/Resources/Sprites/SmallPalette.png";
         _tileSet.image = _img;
 
         _serializeTsx(_tileSet,"test.tsx");
-        //XmlSerializer serializer = new XmlSerializer(_tileSet.GetType());
-        //StreamWriter writer = new StreamWriter("test.tsx");
-        //serializer.Serialize(writer.BaseStream, _tileSet);
-        //writer.Close();
+        XmlSerializer serializer = new XmlSerializer(_tileSet.GetType());
+        StreamWriter writer = new StreamWriter("test.tsx");
+        serializer.Serialize(writer.BaseStream, _tileSet);
+        writer.Close();
     }
     private void _serializeTsx(tileset _tileSet,string strFileName)
     {
