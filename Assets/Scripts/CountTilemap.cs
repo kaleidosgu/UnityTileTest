@@ -20,7 +20,6 @@ public class CountTilemap : MonoBehaviour
     public string GenerateFileName;
     public string TsxFileName;
 
-    private Dictionary<string, string> m_dicReplace;
     private int m_nMaxWidth;
     private int m_nMaxHeight;
     public static Dictionary<string, int> m_dicSpriteIndex = new Dictionary<string, int>();
@@ -29,33 +28,6 @@ public class CountTilemap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _replaceInit();
-        int a = 0;
-    }
-    private void _replaceInit()
-    {
-        if (NeedReplace == true)
-        {
-            m_dicReplace = new Dictionary<string, string>();
-            foreach (ReplaceString str in LstReplaceString)
-            {
-                if (m_dicReplace.ContainsKey(str.strSource) != true)
-                {
-                    if (m_dicReplace.ContainsValue(str.strReplace) != true)
-                    {
-                        m_dicReplace[str.strSource] = str.strReplace;
-                    }
-                    else
-                    {
-                        Debug.Assert(false, string.Format("contain value"));
-                    }
-                }
-                else
-                {
-                    Debug.Assert(false, string.Format("contain key"));
-                }
-            }
-        }
     }
     [ContextMenu("GenerateXmlFile")]
     void GenerateXmlFile()
@@ -66,7 +38,6 @@ public class CountTilemap : MonoBehaviour
             _loadTile.LoadSpriteData();
             _multiSpriteRes = _loadTile.SpriteBuildData;
         }
-        _replaceInit();
 
         int nFileIdx = 0;
         foreach (Tilemap _mapTile in LstAssignedTitleMap)
@@ -83,7 +54,6 @@ public class CountTilemap : MonoBehaviour
 
     private void makeXml(int width, int height, string strContent, string strFileName, string strTsxFileName = "MeowTileSet", int tilewidth = 16, int tileheight = 16, int infinite = 0, int nextlayerid = 2, int nextobjectid = 1)
     {
-
         XmlWriterSettings settings = new XmlWriterSettings();
         settings.Indent = true;
         settings.IndentChars = "\t";
@@ -193,6 +163,11 @@ public class CountTilemap : MonoBehaviour
     }
     private void _generateTileContent(Tilemap _tile, string strGenerateFileName)
     {
+        LoadTimeMap _loadTile = GetComponent<LoadTimeMap>();
+        if (_loadTile != null)
+        {
+            _loadTile.TsxSerializeData();
+        }
         BoundsInt bounds = _tile.cellBounds;
         TileBase[] allTiles = _tile.GetTilesBlock(bounds);
         StringBuilder strBuf = new StringBuilder();
@@ -219,56 +194,6 @@ public class CountTilemap : MonoBehaviour
                 {
                     strBuf.Append("0");
                 }
-                //if (_base != null)
-                //{
-                //    if( _base is RuleTile)
-                //    {
-                //        RuleTile _ruleSpec = _base as RuleTile;
-                //        //_rule.m_DefaultSprite;
-                //        if (NeedReplace == true)
-                //        {
-                //            RuleTile _rule = _base as RuleTile;
-                //            if (m_dicReplace.ContainsKey(_base.name) == true)
-                //            {
-                //                strBuf.Append(string.Format("{0}", m_dicReplace[_base.name]));
-                //            }
-                //            else
-                //            {
-                //                //Debug.Assert(false);
-                //                setNotInclude.Add(_rule.name);
-                //                strBuf.Append(string.Format("{0}", _rule.name));
-                //                //strNotInclude.Append(string.Format("{0}, ", _rule.name));
-                //            }
-                //        }
-                //        else
-                //        {
-                //            int nIdxSp = GetSpriteIndexFromDic(_ruleSpec.m_DefaultSprite);
-                //            //Debug.Log(_ruleSpec.m_DefaultSprite.name);
-                //            string str = string.Format("{0}", nIdxSp);
-                //            int nIdxSprite = _getIndex(_ruleSpec.m_DefaultSprite);
-                //            str = string.Format("{0}", nIdxSprite);
-                //            strBuf.Append(str);
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if( _base is Tile)
-                //        {
-                //            Tile _tileIns = _base as Tile;
-                //            int nIdxSprite = _getIndex(_tileIns.sprite);
-                //            string str = string.Format("{0}", nIdxSprite);
-                //            strBuf.Append(str);
-                //        }
-                //        else
-                //        {
-                //            Debug.Assert(false);
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    strBuf.Append("0");
-                //}
 
                 if (x == bounds.size.x - 1 && y == 0)
                 {
@@ -297,7 +222,7 @@ public class CountTilemap : MonoBehaviour
         {
             strTsxFile = "MeowTileSet";
         }
-        makeXml(bounds.size.x, bounds.size.y, strBuf.ToString(), strGenerateFileName, TsxFileName);
+        makeXml(bounds.size.x, bounds.size.y, strBuf.ToString(), strGenerateFileName, TsxFileName, _loadTile.GetTileSet().tilewidth, _loadTile.GetTileSet().tileheight);
     }
     private int _getIndexBySpriteID(string spID)
     {
