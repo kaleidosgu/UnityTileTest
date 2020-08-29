@@ -228,7 +228,9 @@ public class LoadTimeMap : MonoBehaviour
 
         var yamlObject = deserializer.Deserialize(input);
 
-        string strJson = JsonUtility.ToJson(yamlObject);
+        //JsonUtility.se
+        //string strJson = JsonUtility.ToJson(yamlObject);
+        //JsonUtility.FromJson(str,Type.)
 
         int a = 0;
 
