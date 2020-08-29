@@ -50,7 +50,8 @@ public class CountTilemap : MonoBehaviour
             }
         }
     }
-    public Rootobject MakeJsonData(int width, int height, string strContent, string strFileName, string strTsxFileName = "MeowTileSet", int tilewidth = 16, int tileheight = 16, int infinite = 0, int nextlayerid = 2, int nextobjectid = 1)
+    public Rootobject MakeJsonData(int width, int height, int[] array, string strFileName, string strTsxFileName = "MeowTileSet", int tilewidth = 16, int tileheight = 16, int infinite = 0, int nextlayerid = 2, int nextobjectid = 1)
+    //public Rootobject MakeJsonData(int width, int height, List<int> array, string strFileName, string strTsxFileName = "MeowTileSet", int tilewidth = 16, int tileheight = 16, int infinite = 0, int nextlayerid = 2, int nextobjectid = 1)
     {
         Rootobject _rootObj = new Rootobject();
         _rootObj.compressionlevel = -1;
@@ -82,7 +83,16 @@ public class CountTilemap : MonoBehaviour
         _rootObj.tilesets[0].tilewidth = 16;
 
         _rootObj.layers = new Layer[1];
-        //_rootObj.layers[0].data = strContent;
+        _rootObj.layers[0] = new Layer();
+        _rootObj.layers[0].data = new int[array.Length];
+        //_rootObj.layers[0].data = array;
+        //_rootObj.layers[0].data = new List<int>();
+        int nIdx = 0;
+        foreach( int nVal in array)
+        {
+            _rootObj.layers[0].data[nIdx] = nVal;
+            nIdx++;
+        }
         _rootObj.layers[0] = new Layer();
         _rootObj.layers[0].height = 6;
         _rootObj.layers[0].id = 1;
@@ -221,6 +231,8 @@ public class CountTilemap : MonoBehaviour
         StringBuilder strBuf = new StringBuilder();
         StringBuilder strNotInclude = new StringBuilder();
         HashSet<string> setNotInclude = new HashSet<string>();
+        int[] arrayInt ;
+        List<int> lstInt = new List<int>();
         for (int y = bounds.size.y - 1; y >= 0; y--)
         {
             for (int x = 0; x < bounds.size.x; x++)
@@ -237,10 +249,12 @@ public class CountTilemap : MonoBehaviour
                     string str = string.Format("{0}", nIdxSprite);
                     strBuf.Append(str);
                     Debug.Log(sp.name);
+                    lstInt.Add(nIdxSprite);
                 }
                 else
                 {
                     strBuf.Append("0");
+                    lstInt.Add(0);
                 }
 
                 if (x == bounds.size.x - 1 && y == 0)
@@ -270,8 +284,15 @@ public class CountTilemap : MonoBehaviour
         {
             strTsxFile = "MeowTileSet";
         }
+        arrayInt = new int[lstInt.Count];
+        int nIdxArray = 0;
+        foreach ( int nVal in lstInt)
+        {
+            arrayInt[nIdxArray] = nVal;
+            nIdxArray++;
+        }
         //makeXml(bounds.size.x, bounds.size.y, strBuf.ToString(), strGenerateFileName, TsxFileName, _loadTile.GetTileSet().tilewidth, _loadTile.GetTileSet().tileheight);
-        MakeJsonData(bounds.size.x, bounds.size.y, strBuf.ToString(), strGenerateFileName, TsxFileName, _loadTile.GetTileSet().tilewidth, _loadTile.GetTileSet().tileheight);
+        MakeJsonData(bounds.size.x, bounds.size.y, arrayInt, strGenerateFileName, TsxFileName, _loadTile.GetTileSet().tilewidth, _loadTile.GetTileSet().tileheight);
     }
     private int _getIndexBySpriteID(string spID)
     {

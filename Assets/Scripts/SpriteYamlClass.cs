@@ -1,4 +1,5 @@
 ﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CustomYamlClass
@@ -199,48 +200,49 @@ namespace CustomYamlClass
 [System.Serializable]
     public class Rootobject
     {
-        public int compressionlevel { get; set; }
-        public int height { get; set; }
-        public bool infinite { get; set; }
-        public Layer[] layers { get; set; }
-        public int nextlayerid { get; set; }
-        public int nextobjectid { get; set; }
-        public string orientation { get; set; }
-        public string renderorder { get; set; }
-        public string tiledversion { get; set; }
-        public int tileheight { get; set; }
-        public Tileset[] tilesets { get; set; }
-        public int tilewidth { get; set; }
-        public string type { get; set; }
-        public float version { get; set; }
-        public int width { get; set; }
+        public int compressionlevel;
+        public int height;
+        public bool infinite;
+        public Layer[] layers;
+        public int nextlayerid;
+        public int nextobjectid;
+        public string orientation;
+        public string renderorder;
+        public string tiledversion;
+        public int tileheight;
+        public Tileset[] tilesets;
+        public int tilewidth;
+        public string type;
+        public float version;
+        public int width;
     }
 
+[System.Serializable]
     public class Layer
     {
-        public int[] data { get; set; }
-        public int height { get; set; }
-        public int id { get; set; }
-        public string name { get; set; }
-        public int opacity { get; set; }
-        public string type { get; set; }
-        public bool visible { get; set; }
-        public int width { get; set; }
-        public int x { get; set; }
-        public int y { get; set; }
+        public int[] data;
+        public int height;
+        public int id;
+        public string name;
+        public int opacity;
+        public string type;
+        public bool visible;
+        public int width;
+        public int x;
+        public int y;
     }
-
-    public class Tileset
+[System.Serializable]
+public class Tileset
     {
-        public int columns { get; set; }
-        public int firstgid { get; set; }
-        public string image { get; set; }
-        public int imageheight { get; set; }
-        public int imagewidth { get; set; }
-        public int margin { get; set; }
-        public string name { get; set; }
-        public int spacing { get; set; }
-        public int tilecount { get; set; }
-        public int tileheight { get; set; }
-        public int tilewidth { get; set; }
+        public int columns;
+        public int firstgid;
+        public string image;
+        public int imageheight;
+        public int imagewidth;
+        public int margin;
+        public string name;
+        public int spacing;
+        public int tilecount;
+        public int tileheight;
+        public int tilewidth;
     }
