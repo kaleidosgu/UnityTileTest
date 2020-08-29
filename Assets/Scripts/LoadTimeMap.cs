@@ -215,4 +215,28 @@ public class LoadTimeMap : MonoBehaviour
         //var serializer = new SerializerBuilder().Build();
         //var yaml = serializer.Serialize(_order);
     }
+
+    [ContextMenu("testJson")]
+    public void testJson()
+    {
+        string str = UtilFile.ReadStringFromFile(SpriteDataPath);
+        var input = new StringReader(str);
+
+        var deserializer = new DeserializerBuilder()
+            .WithNamingConvention(new CamelCaseNamingConvention())
+            .Build();
+
+        var yamlObject = deserializer.Deserialize(input);
+
+        string strJson = JsonUtility.ToJson(yamlObject);
+
+        int a = 0;
+
+        // now convert the object to JSON. Simple!
+        //Newtonsoft.Json.JsonSerializer js = new Newtonsoft.Json.JsonSerializer();
+
+        //var w = new StringWriter();
+        //js.Serialize(w, yamlObject);
+        //string jsonText = w.ToString();
+    }
 }
