@@ -85,15 +85,13 @@ public class CountTilemap : MonoBehaviour
         _rootObj.layers = new Layer[1];
         _rootObj.layers[0] = new Layer();
         _rootObj.layers[0].data = new int[array.Length];
-        //_rootObj.layers[0].data = array;
-        //_rootObj.layers[0].data = new List<int>();
         int nIdx = 0;
         foreach( int nVal in array)
         {
+            _rootObj.layers[0].data[nIdx] = new int();
             _rootObj.layers[0].data[nIdx] = nVal;
             nIdx++;
         }
-        _rootObj.layers[0] = new Layer();
         _rootObj.layers[0].height = 6;
         _rootObj.layers[0].id = 1;
         _rootObj.layers[0].name = "Tile Layer 1";
@@ -104,7 +102,7 @@ public class CountTilemap : MonoBehaviour
         _rootObj.layers[0].x = 0;
         _rootObj.layers[0].y = 0;
 
-        string str = JsonUtility.ToJson(_rootObj);
+        string str = JsonUtility.ToJson(_rootObj,true);
 
         return _rootObj;
     }
