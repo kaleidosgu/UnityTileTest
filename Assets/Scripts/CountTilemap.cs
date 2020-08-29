@@ -50,6 +50,54 @@ public class CountTilemap : MonoBehaviour
             }
         }
     }
+    public Rootobject MakeJsonData(int width, int height, string strContent, string strFileName, string strTsxFileName = "MeowTileSet", int tilewidth = 16, int tileheight = 16, int infinite = 0, int nextlayerid = 2, int nextobjectid = 1)
+    {
+        Rootobject _rootObj = new Rootobject();
+        _rootObj.compressionlevel = -1;
+        _rootObj.height = height;
+        _rootObj.width = width;
+        _rootObj.infinite = infinite == 0 ? false : true;
+        _rootObj.nextlayerid = nextlayerid;
+        _rootObj.nextobjectid = nextobjectid;
+        _rootObj.orientation = "orthogonal";
+        _rootObj.renderorder = "right-down";
+        _rootObj.tiledversion = "1.3.1";
+        _rootObj.tileheight = tileheight;
+        _rootObj.tilewidth = tilewidth;
+        _rootObj.type = "map";
+        _rootObj.version = 1.2f;
+
+        _rootObj.tilesets = new Tileset[1];
+        _rootObj.tilesets[0] = new Tileset();
+        _rootObj.tilesets[0].columns = 6;
+        _rootObj.tilesets[0].firstgid = 16;
+        _rootObj.tilesets[0].image = "Assets\\/Resources\\/Sprites\\/SmallPalette.png";
+        _rootObj.tilesets[0].imageheight = 96;
+        _rootObj.tilesets[0].imagewidth = 96;
+        _rootObj.tilesets[0].margin = 0;
+        _rootObj.tilesets[0].name = "baba";
+        _rootObj.tilesets[0].spacing = 0;
+        _rootObj.tilesets[0].tilecount = 36;
+        _rootObj.tilesets[0].tileheight = 16;
+        _rootObj.tilesets[0].tilewidth = 16;
+
+        _rootObj.layers = new Layer[1];
+        //_rootObj.layers[0].data = strContent;
+        _rootObj.layers[0] = new Layer();
+        _rootObj.layers[0].height = 6;
+        _rootObj.layers[0].id = 1;
+        _rootObj.layers[0].name = "Tile Layer 1";
+        _rootObj.layers[0].opacity = 1;
+        _rootObj.layers[0].type = "tilelayer";
+        _rootObj.layers[0].visible = true;
+        _rootObj.layers[0].width = 5;
+        _rootObj.layers[0].x = 0;
+        _rootObj.layers[0].y = 0;
+
+        string str = JsonUtility.ToJson(_rootObj);
+
+        return _rootObj;
+    }
     //width="1312" height="96" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
 
     private void makeXml(int width, int height, string strContent, string strFileName, string strTsxFileName = "MeowTileSet", int tilewidth = 16, int tileheight = 16, int infinite = 0, int nextlayerid = 2, int nextobjectid = 1)
@@ -222,7 +270,8 @@ public class CountTilemap : MonoBehaviour
         {
             strTsxFile = "MeowTileSet";
         }
-        makeXml(bounds.size.x, bounds.size.y, strBuf.ToString(), strGenerateFileName, TsxFileName, _loadTile.GetTileSet().tilewidth, _loadTile.GetTileSet().tileheight);
+        //makeXml(bounds.size.x, bounds.size.y, strBuf.ToString(), strGenerateFileName, TsxFileName, _loadTile.GetTileSet().tilewidth, _loadTile.GetTileSet().tileheight);
+        MakeJsonData(bounds.size.x, bounds.size.y, strBuf.ToString(), strGenerateFileName, TsxFileName, _loadTile.GetTileSet().tilewidth, _loadTile.GetTileSet().tileheight);
     }
     private int _getIndexBySpriteID(string spID)
     {

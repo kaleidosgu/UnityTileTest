@@ -9,6 +9,7 @@ using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.RepresentationModel;
 using System.Runtime.Serialization;
 using System.Xml.Serialization;
+using YamlDotNet.Samples;
 
 public class LoadTimeMap : MonoBehaviour
 {
@@ -222,17 +223,28 @@ public class LoadTimeMap : MonoBehaviour
         string str = UtilFile.ReadStringFromFile(SpriteDataPath);
         var input = new StringReader(str);
 
-        var deserializer = new DeserializerBuilder()
-            .WithNamingConvention(new CamelCaseNamingConvention())
-            .Build();
+        //var deserializer = new DeserializerBuilder()
+        //    .WithNamingConvention(new CamelCaseNamingConvention())
+        //    .Build();
 
-        var yamlObject = deserializer.Deserialize(input);
+        //var yamlObject = deserializer.Deserialize(input);
 
         //JsonUtility.se
         //string strJson = JsonUtility.ToJson(yamlObject);
         //JsonUtility.FromJson(str,Type.)
 
+        var deserializer = new DeserializerBuilder().Build();
+        var yamlObject = deserializer.Deserialize(input);
+        var serializer = new SerializerBuilder()
+            .JsonCompatible()
+            .Build();
+
+        var json = serializer.Serialize(yamlObject);
+        //JsonUtility.FromJson(json, ConvertYamlToJson);
+
         int a = 0;
+
+
 
         // now convert the object to JSON. Simple!
         //Newtonsoft.Json.JsonSerializer js = new Newtonsoft.Json.JsonSerializer();
